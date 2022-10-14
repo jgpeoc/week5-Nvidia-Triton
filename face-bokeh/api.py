@@ -11,7 +11,7 @@ import io
 # We instantiate a deeplab model with the location of the pretrained models
 # or in this case, our triton server
 # https://github.com/tensorflow/models/tree/master/research/deeplab
-model =
+model = 
 
 # Let's generate a new FastAPI app
 # Generate a FastAPI instance called `app` with the title 'Face-Bokeh'

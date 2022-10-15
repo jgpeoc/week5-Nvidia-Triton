@@ -4,6 +4,8 @@ services:
     build: ./face-bokeh
     image: face-bokeh
     container_name: face-bokeh
+    expose:
+      - "8000"
     ports:
       - "8004:8000"
 
@@ -11,6 +13,8 @@ services:
     build: ./face-emotion
     image: face-emotion
     container_name: face-emotion
+    expose:
+      - "8000"
     ports:
       - "8005:8000"
   
@@ -19,6 +23,7 @@ services:
     container_name: tritonserver
     env_file: .aws.env
     expose:
+      - "8000"
       - "8001"
       - "8002"
     ports:
@@ -36,5 +41,7 @@ services:
       - bokeh
       - emotion
       - triton
+    expose:
+      - "8000"
     ports:
       - "8000:8000"

@@ -4,7 +4,7 @@ input [
   {
     name: "ImageTensor"
     data_type: TYPE_UINT8
-    dims: [-1,513,513,3]
+    dims: [-1,513,384,3]
   }
 ]
 output [

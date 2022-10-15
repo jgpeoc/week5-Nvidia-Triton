@@ -4,29 +4,24 @@ services:
     build: ./face-bokeh
     image: face-bokeh
     container_name: face-bokeh
-    expose:
-      - "8001"
     ports:
-      - "8001:8001"
+      - "8004:8000"
 
   emotion:
     build: ./face-emotion
     image: face-emotion
     container_name: face-emotion
-    expose:
-      - "8002"
     ports:
-      - "8002:8002"
-#docker run --env-file .aws.env -p8000:8000 -p8001:8001 -p8002:8002 --rm --net=host 
-#nvcr.io/nvidia/tritonserver:22.06-py3 tritonserver --model-repository=s3://jolascua-bucket/models/
+      - "8005:8000"
+  
   triton:
     image: nvcr.io/nvidia/tritonserver:22.06-py3
     container_name: tritonserver
     env_file: .aws.env
     ports:
-      - "8000:8000"
       - "8001:8001"
       - "8002:8002"
+      - "8003:8003"
     ipc: host
     command: bash -c "tritonserver --model-repository=s3://jolascua-bucket/models/"
 
@@ -34,8 +29,6 @@ services:
     build: .
     image: myapp
     container_name: bokeh-emotion
-    expose:
-      - "8000"
     depends_on:
       - bokeh
       - emotion

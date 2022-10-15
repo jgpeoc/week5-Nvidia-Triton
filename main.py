@@ -11,6 +11,6 @@ app = FastAPI(title='Triton Model Serving')
 #to receive both (face-bokeh and face-emotion)
 @app.get("/", tags=["Health Check"])
 async def root():
-    return {"face-bokeh" : requests.get(url='http://bokeh:8001').json().get("message"), 
-            "face-emotion" : requests.get(url='http://emotion:8002').json().get("message"),
+    return {"face-bokeh" : requests.get(url='http://bokeh:8004').json().get("message"), 
+            "face-emotion" : requests.get(url='http://emotion:8005').json().get("message"),
             "Triton-server" : requests.get(url='http://triton:8000/v2/health/ready').json().get("message")}

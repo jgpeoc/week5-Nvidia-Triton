@@ -6,7 +6,7 @@ import cv2
 import io
 
 # Set triton url path
-triton_url = 'http://triton:8002'
+#triton_url = 'http://triton:8002'
 
 # We instantiate a face-emotion detector with the location of the pretrained models.
 # In this case, the model needs to be set from our emotions.py

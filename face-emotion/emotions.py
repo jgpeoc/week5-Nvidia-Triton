@@ -1,4 +1,4 @@
-#import tritonhttpclient
+import tritonhttpclient
 import tritonclient.http as httpclient
 import numpy as np
 import cv2
@@ -16,7 +16,7 @@ class Sentiment():
         self.output_name = 'dense_5'
         self.model_name = 'face-emotion'
         self.model_version = '1'
-        self.triton_client = httpclient.InferenceServerClient(url=triton_url, verbose=False)
+        self.triton_client = tritonhttpclient.InferenceServerClient(url=triton_url, verbose=False)
         self.emotion_dict = {
             0: "Angry",
             1: "Disgusted",
@@ -29,9 +29,9 @@ class Sentiment():
         self.face_model = cv2.CascadeClassifier(face_model_path)
 
     def predict(self, img):
-        input0 = httpclient.InferInput(self.input_name, (1, 48, 48, 1), 'FP32')
+        input0 = tritonhttpclient.InferInput(self.input_name, (1, 48, 48, 1), 'FP32')
         input0.set_data_from_numpy(img, binary_data=False)
-        output = httpclient.InferRequestedOutput(self.output_name, binary_data=False)
+        output = tritonhttpclient.InferRequestedOutput(self.output_name, binary_data=False)
         response = self.triton_client.infer(self.model_name,
                                             model_version=self.model_version,
                                             inputs=[input0],

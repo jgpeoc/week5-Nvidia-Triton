@@ -1,6 +1,5 @@
 name: "face-bokeh"
 platform: "tensorflow_graphdef"
-max_batch_size: 64
 input [
   {
     name: "ImageTensor"

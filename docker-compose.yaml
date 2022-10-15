@@ -21,7 +21,7 @@ services:
     ports:
       - "8001:8001"
       - "8002:8002"
-      - "8003:8003"
+      - "8003:8000"
     ipc: host
     command: bash -c "tritonserver --model-repository=s3://jolascua-bucket/models/"
 

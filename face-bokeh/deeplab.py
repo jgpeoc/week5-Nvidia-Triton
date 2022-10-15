@@ -2,6 +2,7 @@ import os
 import cv2
 import numpy as np
 import tritonhttpclient
+import tritonclient.http as httpclient
 from scipy.special import softmax
 from icrawler.builtin import GoogleImageCrawler
 
@@ -15,12 +16,12 @@ class DeepLabModel(object):
         self.model_version = '1'
         self.label = 15
         self.input_size = 513
-        self.triton_client = tritonhttpclient.InferenceServerClient(url=triton_url, verbose=False)
+        self.triton_client = httpclient.InferenceServerClient(url=triton_url, verbose=False)
 
     def predict(self, img):
-        input0 = tritonhttpclient.InferInput(self.input_name, (1, 513, 513, 3), 'UINT8')
+        input0 = httpclient.InferInput(self.input_name, (1, 513, 513, 3), 'UINT8')
         input0.set_data_from_numpy(img, binary_data=False)
-        output = tritonhttpclient.InferRequestedOutput(self.output_name, binary_data=False)
+        output = httpclient.InferRequestedOutput(self.output_name, binary_data=False)
         response = self.triton_client.infer(self.model_name,
                                             model_version=self.model_version,
                                             inputs=[input0],

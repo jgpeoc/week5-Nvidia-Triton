@@ -1,5 +1,4 @@
-from starlette.responses import StreamingResponse
-from fastapi import FastAPI, File, UploadFile
+from fastapi import FastAPI
 import requests
 
 # Let's generate a new FastAPI app
@@ -12,5 +11,5 @@ app = FastAPI(title='Triton Model Serving')
 @app.get("/", tags=["Health Check"])
 async def root():
     return {"face-bokeh" : requests.get(url='http://bokeh:8004').json().get("message"), 
-            "face-emotion" : requests.get(url='http://emotion:8005').json().get("message"),
-            "Triton-server" : requests.get(url='http://triton:8000/v2/health/ready').json().get("message")}
+            #"face-emotion" : requests.get(url='http://emotion:8005').json().get("message"),
+            "triton-server" : requests.get(url='http://triton:8003/v2/health/ready').json().get("message")}

@@ -36,7 +36,7 @@ services:
   myapp:
     build: .
     image: myapp
-    container_name: bokeh-emotion
+    container_name: bokeh-emotion-app
     depends_on:
       - bokeh
       - emotion

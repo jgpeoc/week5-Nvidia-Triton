@@ -21,6 +21,7 @@ services:
   triton:
     image: nvcr.io/nvidia/tritonserver:22.06-py3
     container_name: tritonserver
+    hostname: triton
     env_file: .aws.env
     expose:
       - "8000"

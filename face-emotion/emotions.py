@@ -6,7 +6,7 @@ import cv2
 
 class Sentiment():
 
-    def __init__(self, face_model_path, triton_url='triton:8001'):
+    def __init__(self, face_model_path, triton_url='triton:8003'):
         """
         We instantiate the Sentiment class with the pretrained model paths
         Args:

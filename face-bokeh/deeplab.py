@@ -9,14 +9,14 @@ from icrawler.builtin import GoogleImageCrawler
 
 class DeepLabModel(object):
     """Class to load deeplab model and run inference."""
-    def __init__(self, triton_url='triton:8001'): # We set the triton url at port 8002):
+    def __init__(self, triton_url='triton:8003'): # We set the triton url at port 8002):
         self.input_name = 'ImageTensor'
         self.output_name = 'ResizeBilinear_3'
         self.model_name = 'face-bokeh'
         self.model_version = '1'
         self.label = 15
         self.input_size = 513
-        self.triton_client = httpclient.InferenceServerClient(url=triton_url, verbose=False)
+        self.triton_client = httpclient.InferenceServerClient(url=triton_url, verbose=True)
 
     def predict(self, img):
         input0 = httpclient.InferInput(self.input_name, (1, 513, 384, 3), 'UINT8')

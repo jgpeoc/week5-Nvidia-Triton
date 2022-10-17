@@ -4,8 +4,6 @@ services:
     build: ./face-bokeh
     image: face-bokeh
     container_name: bokeh
-    expose:
-      - "8000"
     ports:
       - "8004:8000"
 
@@ -13,8 +11,6 @@ services:
     build: ./face-emotion
     image: face-emotion
     container_name: emotion
-    expose:
-      - "8000"
     ports:
       - "8005:8000"
   
@@ -33,7 +29,7 @@ services:
       - "8003:8000"
     ipc: host
     command: bash -c "tritonserver --model-repository=s3://jolascua-bucket/models/"
-
+#['tritonserver', '--model-repository=s3://shobha-mur-week1/models/']
   myapp:
     build: .
     image: myapp
@@ -42,10 +38,5 @@ services:
       - bokeh
       - emotion
       - triton
-    expose:
-      - "8000"
-      - "8003"
-      - "8004"
-      - "8005"
     ports:
       - "8000:8000"

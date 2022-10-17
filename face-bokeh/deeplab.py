@@ -16,7 +16,7 @@ class DeepLabModel(object):
         self.model_version = '1'
         self.label = 15
         self.input_size = 513
-        self.triton_client = httpclient.InferenceServerClient(url=triton_url, verbose=True)
+        self.triton_client = httpclient.InferenceServerClient(url=triton_url, verbose=False)
 
     def predict(self, img):
         input0 = httpclient.InferInput(self.input_name, (1, 513, 384, 3), 'UINT8')

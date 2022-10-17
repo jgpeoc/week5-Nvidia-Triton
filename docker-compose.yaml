@@ -3,7 +3,7 @@ services:
   bokeh:
     build: ./face-bokeh
     image: face-bokeh
-    container_name: face-bokeh
+    container_name: bokeh
     expose:
       - "8000"
     ports:
@@ -12,7 +12,7 @@ services:
   emotion:
     build: ./face-emotion
     image: face-emotion
-    container_name: face-emotion
+    container_name: emotion
     expose:
       - "8000"
     ports:
@@ -20,7 +20,7 @@ services:
   
   triton:
     image: nvcr.io/nvidia/tritonserver:22.06-py3
-    container_name: tritonserver
+    container_name: triton
     hostname: triton
     env_file: .aws.env
     expose:
